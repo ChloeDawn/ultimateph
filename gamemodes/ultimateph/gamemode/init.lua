@@ -41,6 +41,7 @@ GM.RoundLimit = CreateConVar("ph_roundlimit", 10, bit.bor(FCVAR_NOTIFY), "Number
 GM.RoundTime = CreateConVar("ph_roundtime", 0, bit.bor(FCVAR_NOTIFY), "Time limit before ending the round (0 for automatic time)")
 GM.PostRoundTime = CreateConVar("ph_postroundtime", 15, bit.bor(FCVAR_NOTIFY), "Time before next round after end of the round")
 GM.MapTimeLimit = CreateConVar("ph_map_time_limit", -1, bit.bor(FCVAR_NOTIFY), "Minutes before declaring the next round to be the last round (-1 to disable)")
+GM.HidingTime = CreateConVar("ph_hidingtime", 30, bit.bor(FCVAR_NOTIFY), "Time limit before hunters begin hunting")
 
 GM.HunterDamagePenalty = CreateConVar("ph_hunter_dmgpenalty", 3, bit.bor(FCVAR_NOTIFY), "Amount of damage a hunter should take for shooting an incorrect prop")
 GM.HunterGrenadeAmount = CreateConVar("ph_hunter_smggrenades", 1, bit.bor(FCVAR_NOTIFY), "Amount of SMG grenades hunters should spawn with")
