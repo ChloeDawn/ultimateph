@@ -65,6 +65,11 @@ GM.Secrets =  CreateConVar("ph_secrets", 0, bit.bor(FCVAR_NOTIFY), "Enable secre
 resource.AddFile("materials/husklesph/skull.png")
 resource.AddFile("sound/husklesph/hphaaaaa2.mp3")
 
+hook.Add("Think", "init_version_check", function()
+	hook.Remove("Think", "init_version_check")
+	GAMEMODE:CheckForNewVersion()
+end)
+
 function GM:Initialize()
 	self.RoundWaitForPlayers = CurTime()
 	self.DeathRagdolls = {}
@@ -74,7 +79,6 @@ function GM:Initialize()
 end
 
 function GM:InitPostEntity()
-	self:CheckForNewVersion()
 	self:InitPostEntityAndMapCleanup()
 
 	RunConsoleCommand("mp_show_voice_icons", "0")
