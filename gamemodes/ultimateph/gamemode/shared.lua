@@ -29,6 +29,7 @@ function PlayerMeta:IsProp() return self:Team() == TEAM_PROP end
 
 GM.GameState = GAMEMODE && GAMEMODE.GameState || ROUND_WAIT
 GM.StartWaitTime = CreateConVar("ph_mapstartwait", 30, bit.bor(FCVAR_NOTIFY, FCVAR_REPLICATED), "Number of seconds to wait for players on map start before starting round")
+GM.HidingTime = CreateConVar("ph_hidingtime", 30, bit.bor(FCVAR_NOTIFY, FCVAR_REPLICATED), "Time limit before hunters begin hunting")
 GM.HunterDeafOnHiding = CreateConVar("ph_hunter_deaf_onhiding", 1, bit.bor(FCVAR_NOTIFY, FCVAR_REPLICATED), "Set if hunters can hear while props are hiding (during black screen)")
 GM.PropsSilentFootsteps = CreateConVar("ph_props_silent_footsteps", 0, bit.bor(FCVAR_NOTIFY, FCVAR_REPLICATED), "Does props emit footsteps sounds while moving")
 
