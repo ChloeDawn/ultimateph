@@ -2,6 +2,7 @@ local helpText = [[
 == CONTROLS ==
 LEFT CLICK - Disguises as the prop you are looking at
 C - Locks your prop's rotation when disguised
+R - Drag to rotate currently held prop
 F3 - Taunt menu
 
 
@@ -15,6 +16,8 @@ The aim of the props is to hide from the hunters and not get killed.
 == COMMANDS ==
 "ph_taunt_random" plays a random taunt.
 "ph_taunt <filename>" plays a taunt given a filename.
+"playermodel_selector" opens the player model selector.
+"bind x <command>" binds a command to X (or another key).
 ]]
 
 local menu
