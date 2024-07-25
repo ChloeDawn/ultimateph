@@ -121,5 +121,13 @@
 			"type"		"CheckBox"
 			"default"	"0"
 		}
+		15
+		{
+			"name"		"ph_hidingtime"
+			"text"		"Prop hiding time"
+			"help"		"Number of seconds to wait before releasing hunters"
+			"type"		"Numeric"
+			"default"	"30"
+		}
 	}
 }
