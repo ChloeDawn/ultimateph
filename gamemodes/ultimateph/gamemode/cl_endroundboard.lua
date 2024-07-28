@@ -201,17 +201,20 @@ function GM:EndRoundMapVote()
 		but:SetTall(128)
 
 		local png
-		local path = "maps/" .. map .. ".png"
-		if file.Exists(path, "GAME") then
-			png = Material(path, "noclamp")
-		else
-			local path = "maps/thumb/" .. map .. ".png"
+
+		if self.MapvoteIcons:GetBool() then
+			local path = "maps/" .. map .. ".png"
 			if file.Exists(path, "GAME") then
 				png = Material(path, "noclamp")
 			else
-				local path = "materials/maps/" .. map .. ".png"
+				local path = "maps/thumb/" .. map .. ".png"
 				if file.Exists(path, "GAME") then
 					png = Material(path, "noclamp")
+				else
+					local path = "materials/maps/" .. map .. ".png"
+					if file.Exists(path, "GAME") then
+						png = Material(path, "noclamp")
+					end
 				end
 			end
 		end

@@ -108,6 +108,10 @@ function GM:LoadMapList()
 		self:SaveMapList()
 	end
 
+	if not self.MapvoteIcons:GetBool() then
+		return
+	end
+
 	for k, map in pairs(self.MapList) do
 		local path = "maps/" .. map .. ".png"
 		if file.Exists(path, "GAME") then

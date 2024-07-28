@@ -33,6 +33,8 @@ GM.HidingTime = CreateConVar("ph_hidingtime", 30, bit.bor(FCVAR_NOTIFY, FCVAR_RE
 GM.HunterDeafOnHiding = CreateConVar("ph_hunter_deaf_onhiding", 1, bit.bor(FCVAR_NOTIFY, FCVAR_REPLICATED), "Set if hunters can hear while props are hiding (during black screen)")
 GM.PropsSilentFootsteps = CreateConVar("ph_props_silent_footsteps", 0, bit.bor(FCVAR_NOTIFY, FCVAR_REPLICATED), "Does props emit footsteps sounds while moving")
 
+GM.MapvoteIcons = CreateConVar("ph_mapvote_icons", 1, bit.bor(FCVAR_NOTIFY, FCVAR_REPLICATED), "Provide mapvote icons to connecting clients")
+
 team.SetUp(TEAM_SPEC, "Spectators", Color(120, 120, 120), false) -- Setting Joinable to false allows us to use team.BestAutoJoinTeam and have it only include the Hunters/Props teams.
 team.SetUp(TEAM_HUNTER, "Hunters", Color(255, 150, 50))
 team.SetUp(TEAM_PROP, "Props", Color(50, 150, 255))
