@@ -41,22 +41,23 @@ local function ForEachTaunt(ply, taunts, func)
 	end
 end
 
-local function DoTaunt(ply, snd)
+local function DoTaunt(ply, cat, name)
 	if !IsValid(ply) then return end
 	if !ply:CanTaunt() then return end
 
-	local ats = AllowedTauntSounds[snd]
-	if !ats then return end
-
-	local t
-	ForEachTaunt(ply, ats, function(k, v)
-		t = v
-		return true
+	-- Find all taunts matching the given category and name
+	-- This should only ever be one but I don't have the energy to rewrite this right now
+	local matching = {}
+	ForEachTaunt(ply, cat && TauntCategories[cat] || Taunts, function(k, v)
+		if v.name:lower() == name:lower() then
+			table.insert(matching, v)
+		end
 	end)
 
-	if !t then
-		return
-	end
+	if #matching == 0 then return end
+
+	local t = matching[math.random(#matching)]
+	local snd = t.sound[math.random(#t.sound)]
 
 	ply:EmitTaunt(snd, t.soundDurationOverride)
 end
@@ -79,7 +80,10 @@ local function DoRandomTaunt(ply)
 end
 
 concommand.Add("ph_taunt", function(ply, com, args, full)
-	DoTaunt(ply, args[1] || "")
+	if #args < 2 then
+		return
+	end
+	DoTaunt(ply, args[1], table.concat(args, " ", 2))
 end)
 
 concommand.Add("ph_taunt_random", function(ply, com, args, full)

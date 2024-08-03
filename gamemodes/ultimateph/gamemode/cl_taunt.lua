@@ -48,11 +48,19 @@ local function fillList(mlist, taunts, cat)
 				colMul(col, 0.8)
 			end
 			draw.ShadowText(t.name, "RobotoHUD-L15", 0, h / 2, col, 0, 1)
-			draw.ShadowText(math.Round(t.soundDuration * 10) / 10 .. "s", "RobotoHUD-L10", w, h / 2, col, 2, 1)
+			local duration = ""
+			if t.soundDuration > 60 then
+				mins = math.Round(t.soundDuration / 60.0)
+				secs = math.fmod(t.soundDuration, 60.0)
+				duration = ("%dm%.1fs"):format(mins, secs)
+			else
+				duration = ("%.1fs"):format(t.soundDuration)
+			end
+			draw.ShadowText(duration, "RobotoHUD-L10", w, h / 2, col, 2, 1)
 		end
 
 		function but:DoClick()
-			RunConsoleCommand("ph_taunt", t.sound[math.random(#t.sound)])
+			RunConsoleCommand("ph_taunt", t.categories[1], t.name)
 			saveCursor()
 			menu:Close()
 		end
