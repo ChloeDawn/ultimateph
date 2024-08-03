@@ -139,10 +139,12 @@ end
 
 function GM:PlayerLoadout(ply)
 	if ply:IsHunter() then
-		ply:Give("weapon_crowbar")
+		ply:Give("weapon_stunstick")
+		ply:Give("weapon_pistol")
 		ply:Give("weapon_smg1")
 		ply:Give("weapon_shotgun")
 
+		ply:GiveAmmo(18 * 10, "Pistol")
 		ply:GiveAmmo(45 * 10, "SMG1")
 		ply:GiveAmmo(6 * 10, "buckshot")
 		local amo = self.HunterGrenadeAmount:GetInt()
