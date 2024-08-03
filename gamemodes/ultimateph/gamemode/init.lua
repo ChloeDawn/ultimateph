@@ -13,6 +13,7 @@ end
 util.AddNetworkString("clientIPE")
 util.AddNetworkString("ph_openhelpmenu")
 util.AddNetworkString("player_model_sex")
+util.AddNetworkString("change_perspective")
 
 include("sv_chatmsg.lua")
 include("shared.lua")
@@ -152,5 +153,10 @@ end
 
 function GM:ShowSpare1(ply)
 	net.Start("open_taunt_menu")
+	net.Send(ply)
+end
+
+function GM:ShowSpare2(ply)
+	net.Start("change_perspective")
 	net.Send(ply)
 end
