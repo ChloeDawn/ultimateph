@@ -49,6 +49,21 @@ end
 
 function GM:PreDrawHalos()
 	self:RenderDisguiseHalo()
+
+	local player = LocalPlayer()
+	local own_team = player:Team()
+
+	if own_team ~= TEAM_SPEC then
+		local targets = {}
+
+		for _, teammate in ipairs(team.GetPlayers(own_team)) do
+			if teammate ~= player then
+				table.insert(targets, teammate)
+			end
+		end
+
+  	halo.Add(targets, team.GetColor(own_team), 2, 2, 2, true, true)
+	end
 end
 
 local function lerp(from, to, step)
