@@ -46,19 +46,10 @@ hook.Add("HUDPaint", "DrawDynamicCrosshair", function()
     return
   end
 
-  local origin = ply:GetShootPos()
-  local intersection = util.TraceLine {
-    start = origin,
-    endpos = origin + (ply:GetAimVector() * 10000),
-    filter = ply
-  }
+  local hit = ply:GetEyeTrace().HitPos:ToScreen()
 
-  if (intersection.HitPos - origin):Length() < 3500 then
-    local target = intersection.HitPos:ToScreen()
-    local x = math.Clamp(target.x, 0, ScrW())
-    local y = math.Clamp(target.y, 0, ScrH())
-
-    DrawCrosshair(x, y)
+  if hit.visible then
+    DrawCrosshair(hit.x, hit.y)
   end
 end)
 
