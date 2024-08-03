@@ -67,9 +67,9 @@ function GM:PlayerSetHull(ply, hullx, hully, hullz, duckz)
 	end
 end
 
-function GM:EntityEmitSound( t )
-	if t.Entity:IsPlayer() and t.Entity:IsHunter() then
-		if self.HunterDeafOnHiding:GetBool() then
+function GM:EntityEmitSound(data)
+	if self.HunterDeafOnHiding:GetBool() then
+		if data.Entity:IsPlayer() && data.Entity:IsProp() then
 			if self:GetGameState() == ROUND_HIDE then
 				return false
 			end
@@ -77,8 +77,6 @@ function GM:EntityEmitSound( t )
 	end
 end
 
-function GM:PlayerFootstep( ply, pos, foot, sound, volume, filter )
-	if ply:IsProp() and self.PropsSilentFootsteps:GetBool() then
-		return true
-	end
+function GM:PlayerFootstep(ply, pos, foot, sound, volume, filter)
+	return ply:IsProp() && self.PropsSilentFootsteps:GetBool()
 end
