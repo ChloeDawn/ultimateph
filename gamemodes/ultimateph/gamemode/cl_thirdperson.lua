@@ -11,7 +11,7 @@ local THIRD_PERSON = 1
 local SHOULDER_L = 2
 local SHOULDER_R = 3
 
-local function HasLockedPerspective(ply)
+local function IsCamOverridden(ply)
   return not ply:Alive() or ply:IsDisguised()
 end
 
@@ -20,7 +20,7 @@ local function HasDynamicCrosshair(ply)
     return false
   end
 
-  if HasLockedPerspective(ply) then
+  if IsCamOverridden(ply) then
     return false
   end
 
@@ -28,7 +28,7 @@ local function HasDynamicCrosshair(ply)
 end
 
 net.Receive("change_perspective", function()
-  if not HasLockedPerspective(LocalPlayer()) then
+  if not IsCamOverridden(LocalPlayer()) then
     CAM_PERSPECTIVE:SetInt((CAM_PERSPECTIVE:GetInt() + 1) % 4)
   end
 end)
@@ -56,7 +56,7 @@ end)
 hook.Add("CalcView", "CalcThirdPersonView", function(ply, origin, angles, fov, znear, zfar)
   local perspective = CAM_PERSPECTIVE:GetInt()
 
-  if perspective <= FIRST_PERSON or HasLockedPerspective(ply) then
+  if perspective <= FIRST_PERSON or IsCamOverridden(ply) then
     return nil
   end
 
